@@ -60,9 +60,43 @@ Runtime Behavior:
   -Controller sends: 10011
   -Processor acknowledges with: 01100
 
-Controller sends: 10011
 
-Processor acknowledges with: 01100
+
+Timing Diagram
+===============================================================================
+
+intr_out         __________________
+            ____|                  |___________________________________________
+
+intr_in     __________________      ______________      ___________      _____
+                              |____|              |____|           |____|
+
+data_bus    _______________________|||||||||||||||||||||___________||||||_____
+           
+
+-------------------------------------------------------------------------------
+    Note - The first time the data_bus is active is when the controller
+    drives the bus. Next time when it's active, the processor drives it.
+-------------------------------------------------------------------------------
+    Note - The timing diagram remains the same on both polling and custom
+    priority modes. Only thing that changes is the ack data on the bus.
+-------------------------------------------------------------------------------
+
+Condition Codes
+===============================================================================
+
+    Polling:
+        From Controller     -   01011
+        From Processor      -   10100
+
+    Custom Priority
+        From Controller     -   10011
+        From Processor      -   01100
+
+===============================================================================
+
+
+
 
 Timing Diagram
 ===============================================================================
@@ -98,8 +132,12 @@ Condition Codes
         From Controller     -   01011
         From Processor      -   10100
 
+        
+
     Custom Priority
         From Controller     -   10011
         From Processor      -   01100
+
+        
 
 ===============================================================================
